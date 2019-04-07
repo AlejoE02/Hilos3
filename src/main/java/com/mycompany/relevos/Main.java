@@ -6,7 +6,8 @@
 package com.mycompany.relevos;
 
 /**
- *
+ * Clase desde donde se ejecuta todo el programa
+ * @author Luna
  * @author Alejo02
  */
 public class Main {

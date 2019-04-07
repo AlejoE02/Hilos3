@@ -6,7 +6,7 @@
 package com.mycompany.relevos;
 
 /**
- * 
+ * Clase donde se crean los objetos de equipos y atletas
  * @author Alejo02
  * @author Luna
  */
@@ -26,7 +26,9 @@ public class Principal {
     Atleta atleta8 = new Atleta("Corredor 8", 33, 66, team3);
     Atleta atleta9 = new Atleta("Corredor 9", 66, 100, team3);
     
-    
+    /**
+     * Se inicializan los hilos con cada atleta
+     */
     public void inicializar(){
         atleta1.start();
         atleta2.start();

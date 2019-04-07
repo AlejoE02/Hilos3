@@ -3,7 +3,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ * @param equipo hace referencia al equipo registrado al atleta
+ * @param nombre nombre del atleta
+ * @param  posIni es la posicion en la que inicia el atleta
+ * @param posFinal es la posicion en la que termina el atleta
  * @author Alejo02
  * @author Luna
  */
@@ -13,6 +16,13 @@ public class Atleta extends Thread{
     private int posIni;
     private int posFinal;
     
+    /**
+     * Constructor con las variables que componen el atleta
+     * @param nombre
+     * @param posisionInicial
+     * @param posicionFinal
+     * @param equipo 
+     */
     public Atleta(String nombre, int posisionInicial, int posicionFinal, Equipo equipo) {
         this.nombre = nombre;
         this.posIni = posisionInicial;
@@ -20,6 +30,9 @@ public class Atleta extends Thread{
         this.equipo = equipo;
     }
     
+    /**
+     * Metodo heredado de Thread para hilos
+     */
     @Override
     public void run(){
         if (posIni == 0) {
@@ -39,6 +52,9 @@ public class Atleta extends Thread{
         }
     }
 
+    /**
+     * Método que suma si el atleta se encuentra antes de la posicion 33
+     */
     public void sumaAtleta1(){
         while (true) {
             int pasoActual = suma(1);
@@ -53,7 +69,9 @@ public class Atleta extends Thread{
         }
     }
     
-    
+    /**
+     * Método que suma si el atleta se encuentra antes de la posicion 66
+     */
     public void sumaAtleta2(){
         while (true) {
             int pasoActual = suma(2);
@@ -66,7 +84,10 @@ public class Atleta extends Thread{
             }
         }
     }
-    
+    /**
+     * Método que suma si el atleta se encuentra antes de la posicion 100
+     * Llega a la meta en este método
+     */
     public void sumaAtleta3(){
         while (true) {
             int pasoActual = suma(3);
@@ -77,7 +98,9 @@ public class Atleta extends Thread{
             }
         }
     }
-    
+    /**
+     * Método que hace que el atleta espere si es necesario 
+     */
     public void dormirHilo(){
         synchronized (equipo) {
             try {
@@ -88,6 +111,11 @@ public class Atleta extends Thread{
         }
     }
     
+    /**
+     * Metodo que le suma al atleta segun un random de 0 a 3
+     * @param numAtleta al cual se le va sumar posiciones
+     * @return 0
+     */
     public int suma(int numAtleta) {
         try {
             Thread.sleep(500);
@@ -113,6 +141,10 @@ public class Atleta extends Thread{
         return 0;
     }
    
+    /**
+     * Método para imprimir el equipo y sus posiciones
+     * Llama al método concatenarImpresion que ayuda a imprimir
+     */
     public void imprimir(){
         if(equipo.concatenarImpresion().contains("R")){
             String rojo=equipo.concatenarImpresion();
@@ -131,4 +163,42 @@ public class Atleta extends Thread{
             }
         }
     }
+
+    /**
+     * Getters y Setters
+     * @return 
+     */
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getPosIni() {
+        return posIni;
+    }
+
+    public void setPosIni(int posIni) {
+        this.posIni = posIni;
+    }
+
+    public int getPosFinal() {
+        return posFinal;
+    }
+
+    public void setPosFinal(int posFinal) {
+        this.posFinal = posFinal;
+    }
+    
+    
 }

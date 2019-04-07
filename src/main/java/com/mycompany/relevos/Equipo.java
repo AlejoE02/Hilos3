@@ -3,7 +3,11 @@ package com.mycompany.relevos;
 import java.util.Date;
 
 /**
- * 
+ * @param nombre es el nombre del equipo
+ * @param inicial es la primera letra del equipo
+ * @param posActual es la posicion inicial en la que comienza la carrera
+ * @param posActual_2 es donde se hace el primer relevo (33)
+ * @param posActual_3 es donde se hace el segundo relevo (66)
  * @author Alejo02
  * @author Luna
  */
@@ -11,12 +15,16 @@ public class Equipo {
     private String nombre;
     private String inicial;
     private Date termino;
-    private int posicion;
     private int posActual;
     private int posActual_2;
     private int posActual_3;
     
-   
+   /**
+    * Constructor que recibe el nombre y la inicial del equipo
+    * Inicializa las posiciones de la pista de carrera
+    * @param nombre recibe el nombre del equipo
+    * @param inicial recibe la inicial del equipo
+    */
     public Equipo(String nombre, String inicial) {
         termino = null;
         this.nombre = nombre;
@@ -27,6 +35,10 @@ public class Equipo {
         
     }
    
+    /**
+     * Método sincronizado que concatena la impresion final
+     * @return imprimir que es la variable concatenada
+     */
     public synchronized String concatenarImpresion(){
         String imprimir="";
         imprimir = "\nTeam : " + inicial + " ";
@@ -44,6 +56,10 @@ public class Equipo {
         return imprimir;
     }
 
+    /**
+     * Getters y setters
+     * @return 
+     */
     public String getNombre() {
         return nombre;
     }
@@ -74,14 +90,6 @@ public class Equipo {
 
     public void setPosActual_3(int posActual_3) {
         this.posActual_3 = posActual_3;
-    }
-
-    public int getPosicion() {
-        return posicion;
-    }
-
-    public void setPosicion(int posicion) {
-        this.posicion = posicion;
     }
 
     public Date getTermino() {
