@@ -44,9 +44,9 @@ public class Equipo {
         imprimir = "\nTeam : " + inicial + " ";
         for (int i = 0; i <= 100; i++) {
             if (i == posActual) {
-                imprimir += "#";
-            } else if (i == posActual_2) {
                 imprimir += "*";
+            } else if (i == posActual_2) {
+                imprimir += "#";
             } else if (i == posActual_3) {
                 imprimir += "+";
             } else {

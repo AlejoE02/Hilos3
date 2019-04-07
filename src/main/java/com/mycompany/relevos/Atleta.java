@@ -149,17 +149,17 @@ public class Atleta extends Thread{
         if(equipo.concatenarImpresion().contains("R")){
             String rojo=equipo.concatenarImpresion();
             if(rojo!=null){
-                System.out.println(rojo);
+                System.out.println("\033[31m"+rojo);
             }
         }else if(equipo.concatenarImpresion().contains("A")){
             String azul=equipo.concatenarImpresion();
             if(azul!=null){
-                System.out.println(azul);
+                System.out.println("\033[34m"+azul);
             }
         }else if(equipo.concatenarImpresion().contains("V")){
             String verde=equipo.concatenarImpresion();
             if(verde!=null){
-                System.out.println(verde);
+                System.out.println("\033[32m"+verde);
             }
         }
     }
