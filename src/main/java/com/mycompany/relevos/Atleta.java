@@ -70,8 +70,7 @@ public class Atleta extends Thread{
             }
             if(atleta == 3){
                 int pasoActual = suma();
-                if (pasoActual >= 100) {
-                  
+                if (pasoActual >= 100) {            
                     System.out.println(equipo.getNombre()+" Llegó a la meta primero");
                     System.exit(0);
                 }
@@ -97,15 +96,15 @@ public class Atleta extends Thread{
      */
     public int suma() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Atleta.class.getName()).log(Level.SEVERE, null, ex);
         }
         int avance = Utilitarios.random();
        
-            equipo.setPosActual(equipo.getPosActual()+ avance);
-            imprimir();
-            return equipo.getPosActual();
+        equipo.setPosActual(equipo.getPosActual() + avance);
+        imprimir();
+        return equipo.getPosActual();
             
       }
    
@@ -115,14 +114,11 @@ public class Atleta extends Thread{
      */
     public void imprimir(){
         if(equipo.concatenarImpresion().contains("R")){
-            String rojo=equipo.concatenarImpresion();
-                System.out.println("\033[31m"+rojo);
-         }else if(equipo.concatenarImpresion().contains("A")){
-            String azul=equipo.concatenarImpresion();
-                System.out.println("\033[34m"+azul);
+            System.out.println("\033[31m"+equipo.concatenarImpresion());
+        }else if(equipo.concatenarImpresion().contains("A")){
+            System.out.println("\033[34m"+equipo.concatenarImpresion());
         }else if(equipo.concatenarImpresion().contains("V")){
-            String verde=equipo.concatenarImpresion();
-                System.out.println("\033[32m"+verde);
+            System.out.println("\033[32m"+equipo.concatenarImpresion());
         }
     }
 
