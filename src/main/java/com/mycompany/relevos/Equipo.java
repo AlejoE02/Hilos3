@@ -30,8 +30,7 @@ public class Equipo {
         this.nombre = nombre;
         this.inicial = inicial;
         this.posActual=0;
-        this.posActual_2=33;
-        this.posActual_3=66;
+
         
     }
    
@@ -39,16 +38,17 @@ public class Equipo {
      * Método sincronizado que concatena la impresion final
      * @return imprimir que es la variable concatenada
      */
+    
     public synchronized String concatenarImpresion(){
         String imprimir="";
         imprimir = "\nTeam : " + inicial + " ";
         for (int i = 0; i <= 100; i++) {
-            if (i == posActual) {
+            if (i == 33) {
                 imprimir += "*";
-            } else if (i == posActual_2) {
-                imprimir += "#";
-            } else if (i == posActual_3) {
-                imprimir += "+";
+            } else if (i == 66) {
+                imprimir += "*";
+            } else if (i == posActual) {
+                imprimir += "*°";
             } else {
                 imprimir += ".";
             }

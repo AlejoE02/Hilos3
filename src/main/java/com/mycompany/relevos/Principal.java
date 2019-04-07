@@ -16,15 +16,16 @@ public class Principal {
     Equipo team2 = new Equipo("Azul", "A");
     Equipo team3 = new Equipo("Verde", "V");
     
-    Atleta atleta1 = new Atleta("Corredor 1", 0, 33, team1);
-    Atleta atleta2 = new Atleta("Corredor 2", 33, 66, team1);
-    Atleta atleta3 = new Atleta("Corredor 3", 66, 100, team1);
-    Atleta atleta4 = new Atleta("Corredor 4", 0, 33, team2);
-    Atleta atleta5 = new Atleta("Corredor 5", 33, 66, team2);
-    Atleta atleta6 = new Atleta("Corredor 6", 66, 100, team2);
-    Atleta atleta7 = new Atleta("Corredor 7", 0, 33, team3);
-    Atleta atleta8 = new Atleta("Corredor 8", 33, 66, team3);
-    Atleta atleta9 = new Atleta("Corredor 9", 66, 100, team3);
+    Atleta atleta1 = new Atleta("Corredor 1", 0, team1);
+    Atleta atleta2 = new Atleta("Corredor 2", 33, team1);
+    Atleta atleta3 = new Atleta("Corredor 3", 66, team1);
+    Atleta atleta4 = new Atleta("Corredor 4", 0, team2);
+    Atleta atleta5 = new Atleta("Corredor 5", 33, team2);
+    Atleta atleta6 = new Atleta("Corredor 6", 66, team2);
+    Atleta atleta7 = new Atleta("Corredor 7", 0, team3);
+    Atleta atleta8 = new Atleta("Corredor 8", 33, team3);
+    Atleta atleta9 = new Atleta("Corredor 9", 66, team3);
+
     
     /**
      * Se inicializan los hilos con cada atleta

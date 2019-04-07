@@ -6,7 +6,6 @@ import java.util.logging.Logger;
  * @param equipo hace referencia al equipo registrado al atleta
  * @param nombre nombre del atleta
  * @param  posIni es la posicion en la que inicia el atleta
- * @param posFinal es la posicion en la que termina el atleta
  * @author Alejo02
  * @author Luna
  */
@@ -14,19 +13,17 @@ public class Atleta extends Thread{
     Equipo equipo;
     private String nombre;
     private int posIni;
-    private int posFinal;
+
     
     /**
      * Constructor con las variables que componen el atleta
      * @param nombre
-     * @param posisionInicial
-     * @param posicionFinal
+     * @param posicionInicial
      * @param equipo 
      */
-    public Atleta(String nombre, int posisionInicial, int posicionFinal, Equipo equipo) {
+    public Atleta(String nombre, int posicionInicial, Equipo equipo) {
         this.nombre = nombre;
-        this.posIni = posisionInicial;
-        this.posFinal = posicionFinal;
+        this.posIni = posicionInicial;
         this.equipo = equipo;
     }
     
@@ -36,17 +33,17 @@ public class Atleta extends Thread{
     @Override
     public void run(){
         if (posIni == 0) {
-            sumaAtleta1();
+            sumaAtleta(1);
         } else {
             dormirHilo();
         }
         if (posIni == 33) {
-            sumaAtleta2();
+            sumaAtleta(2);
         } else {
             dormirHilo();
         }
         if (posIni == 66) {
-            sumaAtleta3();
+            sumaAtleta(3);
         } else {
             dormirHilo();
         }
@@ -55,46 +52,34 @@ public class Atleta extends Thread{
     /**
      * Método que suma si el atleta se encuentra antes de la posicion 33
      */
-    public void sumaAtleta1(){
-        while (true) {
-            int pasoActual = suma(1);
-            if (pasoActual >= 33) {
-                equipo.setPosActual(33);
-                synchronized (equipo) {
-                    equipo.notifyAll();
-                    posIni = 33;
+    public void sumaAtleta(int atleta){
+        while(true){
+            if(atleta == 1){
+                int pasoActual = suma();
+                if (pasoActual >= 33) { 
+                    synchronized (equipo) {
+                        equipo.notifyAll();
+                        posIni = 33;
+                    }
+                    break;
                 }
-                break;
             }
-        }
-    }
-    
-    /**
-     * Método que suma si el atleta se encuentra antes de la posicion 66
-     */
-    public void sumaAtleta2(){
-        while (true) {
-            int pasoActual = suma(2);
-            if (pasoActual >= 66) {
-                equipo.setPosActual_2(66);
-                synchronized (equipo) {
-                    equipo.notify();
+            if(atleta == 2){
+                int pasoActual = suma();
+                if (pasoActual >= 66) {         
+                    synchronized (equipo) {
+                        equipo.notify();
+                    }
+                    break;
                 }
-                break;
             }
-        }
-    }
-    /**
-     * Método que suma si el atleta se encuentra antes de la posicion 100
-     * Llega a la meta en este método
-     */
-    public void sumaAtleta3(){
-        while (true) {
-            int pasoActual = suma(3);
-            if (pasoActual >= 100) {
-                equipo.setPosActual_3(100);
-                System.out.println(equipo.getNombre()+" Llegó a la meta primero");
-                System.exit(0);
+            if(atleta == 3){
+                int pasoActual = suma();
+                if (pasoActual >= 100) {
+                  
+                    System.out.println(equipo.getNombre()+" Llegó a la meta primero");
+                    System.exit(0);
+                }
             }
         }
     }
@@ -116,30 +101,19 @@ public class Atleta extends Thread{
      * @param numAtleta al cual se le va sumar posiciones
      * @return 0
      */
-    public int suma(int numAtleta) {
+    public int suma() {
         try {
             Thread.sleep(500);
         } catch (InterruptedException ex) {
             Logger.getLogger(Atleta.class.getName()).log(Level.SEVERE, null, ex);
         }
         int avance = Utilitarios.random();
-        if (numAtleta == 1) {
+       
             equipo.setPosActual(equipo.getPosActual()+ avance);
             imprimir();
             return equipo.getPosActual();
-        }
-        if (numAtleta == 2) {
-            equipo.setPosActual_2(equipo.getPosActual_2() + avance);
-            imprimir();
-            return equipo.getPosActual_2();
-        }
-        if (numAtleta == 3) {
-            equipo.setPosActual_3(equipo.getPosActual_3()+ avance);
-            imprimir();
-            return equipo.getPosActual_3();
-        }
-        return 0;
-    }
+            
+      }
    
     /**
      * Método para imprimir el equipo y sus posiciones
@@ -191,14 +165,4 @@ public class Atleta extends Thread{
     public void setPosIni(int posIni) {
         this.posIni = posIni;
     }
-
-    public int getPosFinal() {
-        return posFinal;
-    }
-
-    public void setPosFinal(int posFinal) {
-        this.posFinal = posFinal;
-    }
-    
-    
 }

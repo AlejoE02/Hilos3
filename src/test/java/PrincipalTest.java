@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.mycompany.relevos.Atleta;
 import com.mycompany.relevos.Equipo;
 import com.mycompany.relevos.Utilitarios;
 import static jdk.nashorn.internal.objects.NativeRegExp.test;
@@ -57,7 +58,7 @@ public class PrincipalTest {
     @Test
     public void imprimirTest(){
         Equipo equi = new Equipo("Amarillo", "A");
-        boolean si = equi.concatenarImpresion().contains("Equipo : ");
+        boolean si = equi.concatenarImpresion().contains("Team : ");
         assertTrue(si);
     }
     
