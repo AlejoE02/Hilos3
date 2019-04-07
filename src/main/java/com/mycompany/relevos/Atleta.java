@@ -17,9 +17,9 @@ public class Atleta extends Thread{
     
     /**
      * Constructor con las variables que componen el atleta
-     * @param nombre
-     * @param posicionInicial
-     * @param equipo 
+     * @param nombre nombre del atleta
+     * @param posicionInicial posicion inicial del atleta
+     * @param equipo nombre del equipo al que pertenece
      */
     public Atleta(String nombre, int posicionInicial, Equipo equipo) {
         this.nombre = nombre;
@@ -34,23 +34,18 @@ public class Atleta extends Thread{
     public void run(){
         if (posIni == 0) {
             sumaAtleta(1);
-        } else {
-            dormirHilo();
-        }
-        if (posIni == 33) {
+        } else if(posIni ==33){
             sumaAtleta(2);
-        } else {
-            dormirHilo();
-        }
-        if (posIni == 66) {
+        }else if(posIni == 66){
             sumaAtleta(3);
-        } else {
+        }else{
             dormirHilo();
         }
     }
 
     /**
-     * Método que suma si el atleta se encuentra antes de la posicion 33
+     * Método que permite el avance del atleta
+     * @param atleta recive el id del atleta
      */
     public void sumaAtleta(int atleta){
         while(true){
@@ -59,7 +54,7 @@ public class Atleta extends Thread{
                 if (pasoActual >= 33) { 
                     synchronized (equipo) {
                         equipo.notifyAll();
-                        posIni = 33;
+                        //posIni = 33;
                     }
                     break;
                 }
@@ -98,8 +93,7 @@ public class Atleta extends Thread{
     
     /**
      * Metodo que le suma al atleta segun un random de 0 a 3
-     * @param numAtleta al cual se le va sumar posiciones
-     * @return 0
+     * @return posicion del atleta 
      */
     public int suma() {
         try {
@@ -122,19 +116,13 @@ public class Atleta extends Thread{
     public void imprimir(){
         if(equipo.concatenarImpresion().contains("R")){
             String rojo=equipo.concatenarImpresion();
-            if(rojo!=null){
                 System.out.println("\033[31m"+rojo);
-            }
-        }else if(equipo.concatenarImpresion().contains("A")){
+         }else if(equipo.concatenarImpresion().contains("A")){
             String azul=equipo.concatenarImpresion();
-            if(azul!=null){
                 System.out.println("\033[34m"+azul);
-            }
         }else if(equipo.concatenarImpresion().contains("V")){
             String verde=equipo.concatenarImpresion();
-            if(verde!=null){
                 System.out.println("\033[32m"+verde);
-            }
         }
     }
 
